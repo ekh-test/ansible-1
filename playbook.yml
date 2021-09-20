@@ -1,0 +1,23 @@
+---
+
+- name: install nginx
+  hosts: all
+  become: true
+  tasks:
+
+    - name: install nginx
+      apt:
+        name: nginx
+        state: latest
+
+    - name: copy index.html
+      copy:
+        src: ./index.html
+        dest: /var/www/html/index.html
+      
+    - name: start nginx
+      service:
+        name: nginx
+        state: started
+
+
